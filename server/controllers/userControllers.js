@@ -105,7 +105,11 @@ const changeAvatar = async (req, res, next) => {
     if (!req.files.avatar) {
       return next(new HttpError("Please upload an image", 422));
     }
+
+    // Finding the user from the database
     const user = await userModel.findById(req.user.id);
+
+    // Deleting the old avatar if already exists
     if (user.avatar) {
       fs.unlink(path.join(__dirname, "..", user.avatar), (err) => {
         if (err) {
@@ -113,7 +117,9 @@ const changeAvatar = async (req, res, next) => {
         }
       });
     }
-    // res.json(req.files);
+    const { avatar } = req.files;
+
+    
   } catch (error) {
     return next(new HttpError(error, 422));
   }
