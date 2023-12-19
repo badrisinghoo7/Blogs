@@ -4,15 +4,17 @@ const HttpError = require("../models/errorModel");
 const authMiddleware = async (req, res, next) => {
   const Authorization = req.headers.Authorization || req.headers.authorization;
 
-  if(Authorization && Authorization.startsWith("Bearer")){
+  if (Authorization && Authorization.startsWith("Bearer")) {
     const token = Authorization.split(" ")[1];
-    try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      req.user = decoded;
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+      if (err) {
+        return next(new HttpError("Authentication failed.Invalid token", 403));
+      }
+      req.user = user;
       next();
-    } catch (error) {
-      return next(new HttpError("Authentication failed", 401));
-    }
+    });
+  } else {
+    return next(new HttpError("Authentication failed. No token", 402));
   }
 };
 
