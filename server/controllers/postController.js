@@ -143,23 +143,56 @@ const editPost = async (req, res, next) => {
         description,
       })),
         { new: true };
-    }
-    else{
-        //get old post from data base
-        const oldPost = await postModel.findById(postId)
+    } else {
+      //get old post from data base
+      const oldPost = await postModel.findById(postId);
 
-        // delete the old post thumbnail
-        fs.unlink(path.join(__dirname, "..", "uploads", oldPost.thumbnail), (err) => {
+      // delete the old post thumbnail
+      fs.unlink(
+        path.join(__dirname, "..", "uploads", oldPost.thumbnail),
+        async (err) => {
           if (err) {
             return next(new HttpError(err, 400));
           }
-          // upload a new thumbnails
-          const {thumbnail} = req.files;
-          // checkin the file   size
-          if (thumbnail.size > 2000000) {
-            return next(new HttpError("File size too large", 400));
+        }
+      );
+      // upload a new thumbnails
+      const { thumbnail } = req.files;
+      // checkin the file   size
+      if (thumbnail.size > 2000000) {
+        return next(new HttpError("File size too large", 400));
+      }
+      // upload the file and update the name of file
+      fileName = thumbnail.name;
+      splitFileName = fileName.split(".");
+      newFilename =
+        splitFileName[0] +
+        uuid() +
+        "." +
+        splitFileName[splitFileName.length - 1];
+      thumbnail.mv(
+        path.join(__dirname, "..", "uploads", newFilename),
+        async (err) => {
+          if (err) {
+            return next(new HttpError(err, 400));
           }
-        })
+        }
+      );
+      updatedPost = await postModel.findByIdAndUpdate(
+        postId,
+        {
+          title,
+          category,
+          description,
+          thumbnail: newFilename,
+        },
+        {
+          new: true,
+        }
+      );
+    }
+    if (!updatedPost) {
+      return next(new HttpError("Could not update the post .", 422));
     }
   } catch (error) {
     return next(new HttpError(error));
