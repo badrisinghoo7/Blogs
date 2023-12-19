@@ -132,13 +132,19 @@ const changeAvatar = async (req, res, next) => {
     let splitFileName = fileName.split(".");
     let newFileName =
       splitFileName[0] + uuid() + "." + splitFileName[splitFileName.length - 1];
-    avatar.mv(path.join(__dirname, "..", "uploads", newFileName), async() => {
+    avatar.mv(path.join(__dirname, "..", "uploads", newFileName), async () => {
       if (err) {
         return next(new HttpError(err, 422));
       }
-      const updatedAvatar = await userModel.findByIdAndUpdate(req.user.id,{avatar: newFileName},{new:true})
-      if(!updatedAvatar){
-        return next(new HttpError("Something went wrong. Please try again", 422));
+      const updatedAvatar = await userModel.findByIdAndUpdate(
+        req.user.id,
+        { avatar: newFileName },
+        { new: true }
+      );
+      if (!updatedAvatar) {
+        return next(
+          new HttpError("Something went wrong. Please try again", 422)
+        );
       }
       res.status(200).json(updatedAvatar);
     });
@@ -153,10 +159,33 @@ const changeAvatar = async (req, res, next) => {
 
 const editUser = async (req, res, next) => {
   try {
+    const { name, email, currentPassword, newPassword, confirmPassword } =
+      req.body;
+    if (
+      !name ||
+      !email ||
+      !currentPassword ||
+      !newPassword ||
+      !confirmPassword
+    ) {
+      return next(new HttpError("Fill in all fields", 422));
+    }
+    // get user from data base
+    
+    const user = await userModel.findById(req.user.id);
+    if (!user) {
+      return next(new HttpError("User does not exist.", 403));
+    }
+
+    // Make sure new Emails doesNot exist
+    const emailExist = await userModel.findOne({ email });
+    if(emailExist && (emailExist._id!==req.user.id)){
+        return next(new HttpError("Email already exists", 422));
+    }
+    // compare current password
     
   } catch (error) {
     return next(new HttpError(error, 422));
-    
   }
 };
 
