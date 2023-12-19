@@ -70,13 +70,12 @@ const createPost = async (req, res, next) => {
 // UNprotected
 const getPost = async (req, res, next) => {};
 
-
 // ======> Get All Post
 //GET : api/posts/
 // UNprotected
 const getPosts = async (req, res, next) => {
   try {
-    const posts = await postModel.find().sort({ updateAt: -1 });
+    const posts = await postModel.find().sort({ updatedAt: -1 });
   } catch (error) {
     return next(new HttpError(error));
   }
