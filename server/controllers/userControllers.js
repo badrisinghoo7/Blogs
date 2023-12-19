@@ -106,7 +106,13 @@ const changeAvatar = async (req, res, next) => {
       return next(new HttpError("Please upload an image", 422));
     }
     const user = await userModel.findById(req.user.id);
-
+    if (user.avatar) {
+      fs.unlink(path.join(__dirname, "..", user.avatar), (err) => {
+        if (err) {
+          return next(new HttpError(err, 422));
+        }
+      });
+    }
     // res.json(req.files);
   } catch (error) {
     return next(new HttpError(error, 422));
