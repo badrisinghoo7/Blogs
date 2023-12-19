@@ -1,10 +1,10 @@
 //Post Controller here
 
-const PostModel = require("../models/postModel");
-const UserModel = require("../models/userModel");
+const {postModel} = require("../models/postModel");
+const {userModel} = require("../models/userModel");
 const fs = require("fs");
 const path = require("path");
-const { v4: uuidv4 } = require("uuid");
+const { v4: uuid } = require("uuid");
 const HttpError = require("../models/errorModel");
 
 // ======> Create A post for user
@@ -21,42 +21,39 @@ const createPost = async (req, res, next) => {
         )
       );
     }
-    const { thumbnails } = req.files;
+    const { thumbnail } = req.files;
     //checking the files thumbnails
 
-    if (thumbnails.size > 2000000) {
+    if (thumbnail.size > 2000000) {
       return next(
         new HttpError("File size is too large. Should be less than 2mb", 400)
       );
     }
 
-    let fileName = thumbnails.name;
+    let fileName = thumbnail.name;
     let splitFileName = fileName.split(".");
     let newFileName =
-      splitFileName[0] +
-      uuidv4() +
-      "." +
-      splitFileName[splitFileName.length - 1];
-    thumbnails.mv(
-      path.join(__dirname, "..", "./uploads", newFileName),
+      splitFileName[0] + uuid() + "." + splitFileName[splitFileName.length - 1];
+    thumbnail.mv(
+      path.join(__dirname, "..", "/uploads", newFileName),
       async (err) => {
         if (err) {
           return next(new HttpError(err, 400));
         } else {
-          const newPost = new PostModel.create({
+          const newPost = await postModel.create({
             title,
             category,
             description,
-            creator: req.user._id,
-            Image: newFileName,
-          });
+            thumbnail: newFileName,
+            creator: req.user.id,
+          })
           if (!newPost) {
             return next(new HttpError("Post could not be created", 422));
           }
           // find user and increase count by 1
-          const currentUser = await UserModel.findById(req.user.id);
+          const currentUser = await userModel.findById(req.user.id);
           const userPostCount = currentUser.posts + 1;
-          await UserModel.findByIdAndUpdate(req.user.id, {
+          await userModel.findByIdAndUpdate(req.user.id, {
             posts: userPostCount,
           });
           res.status(201).json(newPost);

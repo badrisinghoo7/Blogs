@@ -19,14 +19,15 @@ const postSchema = mongoose.Schema(
     },
     description: { type: String, required: true },
     creator: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    thumbnail: { type: String, required: true },
   },
   {
     timestamps: true,
   }
 );
 
-const PostModel = mongoose.model("post", postSchema);
+const postModel = mongoose.model("post", postSchema);
 
 module.exports = {
-  PostModel,
+  postModel,
 };
