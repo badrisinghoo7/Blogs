@@ -6,17 +6,20 @@
 const createPost = async (req, res, next) => {};
 
 // ======> Get single Post
-//POST : api/posts/:id
+//GET : api/posts/:id
 // UNprotected
 const getPost = async (req, res, next) => {};
-
+// ======> Get All Post
+//GET : api/posts/
+// UNprotected
+const getPosts = async (req, res, next) => {};
 // ======>Get posts by category
-//POST : api/posts/category/:category
+//GET : api/posts/category/:category
 // Unprotected
 const getCategoryPost = async (req, res, next) => {};
 
 // ======> Get users/Authors post
-//POST : api/posts
+//GET : api/posts
 // Unprotected
 const getUserPost = async (req, res, next) => {};
 
@@ -29,3 +32,15 @@ const editPost = async (req, res, next) => {};
 //DELETE : api/posts/:id
 // Protected
 const deletePost = async (req, res, next) => {};
+
+
+
+module.exports = {
+    createPost,
+    getPost,
+    getPosts,
+    getCategoryPost,
+    getUserPost,
+    editPost,
+    deletePost
+}
