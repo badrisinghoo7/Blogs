@@ -183,16 +183,18 @@ const editUser = async (req, res, next) => {
       return next(new HttpError("Email already exists", 422));
     }
     // compare current password
-    const validUserPassword = await bcrypt.compare(
-      currentPassword,
-      user.password
-    );
-    if(!validUserPassword){
-        return next(new HttpError("You can not use your old password. Create a new one", 422));
+    const validUserPassword = await bcrypt.compare(newPassword, user.password);
+    if (validUserPassword) {
+      return next(
+        new HttpError(
+          "You can not use your old password. Create a new one",
+          422
+        )
+      );
     }
     // compare new password
-    if(newPassword !== confirmPassword){
-        return next(new HttpError("Passwords does not matching. Try again", 422));
+    if (newPassword !== confirmPassword) {
+      return next(new HttpError("Passwords does not matching. Try again", 422));
     }
 
     // Hash the new password
@@ -203,12 +205,9 @@ const editUser = async (req, res, next) => {
       { new: true }
     );
     res.status(200).json(updatedUser);
-    
-
 
     // For handling the error part
   } catch (error) {
-
     return next(new HttpError(error, 422));
   }
 };
