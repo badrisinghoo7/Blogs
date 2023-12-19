@@ -100,7 +100,11 @@ const getUser = async (req, res, next) => {
 
 const changeAvatar = async (req, res, next) => {
     try {
-        res.json(req.files);
+        if (!req.files.avatar) {
+            return next(new HttpError("Please upload an image", 422));
+        }
+        
+        // res.json(req.files);
     } catch (error) {
         return next(new HttpError(error, 422));
     }
