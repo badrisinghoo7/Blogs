@@ -68,7 +68,13 @@ const createPost = async (req, res, next) => {
 // ======> Get single Post
 //GET : api/posts/:id
 // UNprotected
-const getPost = async (req, res, next) => {};
+const getPost = async (req, res, next) => {
+    try {
+        
+    } catch (error) {
+        return next(new HttpError(error));
+    }
+};
 // ======> Get All Post
 //GET : api/posts/
 // UNprotected
