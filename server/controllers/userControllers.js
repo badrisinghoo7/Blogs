@@ -119,7 +119,15 @@ const changeAvatar = async (req, res, next) => {
     }
     const { avatar } = req.files;
 
-    
+    // Check file size and type
+    if (avatar.size > 500000) {
+      return next(
+        new HttpError("File size is too large. Should be less than 500kb", 422)
+      );
+    }
+    let fileName;
+    fileName = avatar.name;
+    let splitFileName = fileName.split(".");
   } catch (error) {
     return next(new HttpError(error, 422));
   }
