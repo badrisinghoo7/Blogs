@@ -128,6 +128,7 @@ const changeAvatar = async (req, res, next) => {
     let fileName;
     fileName = avatar.name;
     let splitFileName = fileName.split(".");
+    let newFileName = `${splitFileName[0]}-${Date.now()}.${splitFileName[1]}`;
   } catch (error) {
     return next(new HttpError(error, 422));
   }
