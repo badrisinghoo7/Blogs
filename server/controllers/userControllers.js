@@ -8,6 +8,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 const path = require("path");
+const { v4: uuid } = require("uuid");
+
 require("dotenv").config();
 
 const registerUser = async (req, res, next) => {
@@ -128,7 +130,8 @@ const changeAvatar = async (req, res, next) => {
     let fileName;
     fileName = avatar.name;
     let splitFileName = fileName.split(".");
-    let newFileName = `${splitFileName[0]}-${Date.now()}.${splitFileName[1]}`;
+    let newFileName =
+      splitFileName[0] + uuid() + "." + splitFileName[splitFileName.length - 1];
   } catch (error) {
     return next(new HttpError(error, 422));
   }
