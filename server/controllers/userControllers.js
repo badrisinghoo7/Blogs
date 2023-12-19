@@ -203,7 +203,12 @@ const editUser = async (req, res, next) => {
       { new: true }
     );
     res.status(200).json(updatedUser);
+    
+
+
+    // For handling the error part
   } catch (error) {
+
     return next(new HttpError(error, 422));
   }
 };
