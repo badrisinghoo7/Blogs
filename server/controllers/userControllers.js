@@ -171,7 +171,7 @@ const editUser = async (req, res, next) => {
       return next(new HttpError("Fill in all fields", 422));
     }
     // get user from data base
-    
+
     const user = await userModel.findById(req.user.id);
     if (!user) {
       return next(new HttpError("User does not exist.", 403));
@@ -179,11 +179,30 @@ const editUser = async (req, res, next) => {
 
     // Make sure new Emails doesNot exist
     const emailExist = await userModel.findOne({ email });
-    if(emailExist && (emailExist._id!==req.user.id)){
-        return next(new HttpError("Email already exists", 422));
+    if (emailExist && emailExist._id !== req.user.id) {
+      return next(new HttpError("Email already exists", 422));
     }
     // compare current password
-    
+    const validUserPassword = await bcrypt.compare(
+      currentPassword,
+      user.password
+    );
+    if(!validUserPassword){
+        return next(new HttpError("You can not use your old password. Create a new one", 422));
+    }
+    // compare new password
+    if(newPassword !== confirmPassword){
+        return next(new HttpError("Passwords does not matching. Try again", 422));
+    }
+
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(newPassword, 12);
+    const updatedUser = await userModel.findByIdAndUpdate(
+      req.user.id,
+      { name, email, password: hashedPassword },
+      { new: true }
+    );
+    res.status(200).json(updatedUser);
   } catch (error) {
     return next(new HttpError(error, 422));
   }
