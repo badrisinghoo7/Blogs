@@ -132,6 +132,16 @@ const changeAvatar = async (req, res, next) => {
     let splitFileName = fileName.split(".");
     let newFileName =
       splitFileName[0] + uuid() + "." + splitFileName[splitFileName.length - 1];
+    avatar.mv(path.join(__dirname, "..", "uploads", newFileName), async() => {
+      if (err) {
+        return next(new HttpError(err, 422));
+      }
+      const updatedAvatar = await userModel.findByIdAndUpdate(req.user.id,{avatar: newFileName},{new:true})
+      if(!updatedAvatar){
+        return next(new HttpError("Something went wrong. Please try again", 422));
+      }
+      res.status(200).json(updatedAvatar);
+    });
   } catch (error) {
     return next(new HttpError(error, 422));
   }
