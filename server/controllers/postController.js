@@ -234,7 +234,7 @@ const deletePost = async (req, res, next) => {
     } else {
       return next(
         new HttpError(
-          "Post can not be deleted from here and you can not delete this post .",
+          "Post can not be deleted from here and you can not delete this post . Or you have to Authorised first",
           403
         )
       );
