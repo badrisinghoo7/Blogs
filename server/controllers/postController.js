@@ -50,9 +50,16 @@ const createPost = async (req, res, next) => {
             creator: req.user._id,
             Image: newFileName,
           });
-          if(!newPost){
+          if (!newPost) {
             return next(new HttpError("Post could not be created", 422));
           }
+          // find user and increase count by 1
+          const currentUser = await UserModel.findById(req.user.id);
+          const userPostCount = currentUser.posts + 1;
+          await UserModel.findByIdAndUpdate(req.user.id, {
+            posts: userPostCount,
+          });
+          res.status(201).json(newPost);
         }
       }
     );
