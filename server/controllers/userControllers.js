@@ -5,6 +5,8 @@
 const HttpError = require("../models/errorModel");
 const { userModel } = require("../models/userModel");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const registerUser = async (req, res, next) => {
   try {
@@ -50,7 +52,29 @@ const registerUser = async (req, res, next) => {
 
 const loginUser = async (req, res, next) => {
   try {
-  } catch (error) {}
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return next(new HttpError("Fill in all fields.", 422));
+    }
+    const newEmail = email.toLowerCase();
+
+    const user = await userModel.findOne({ email: newEmail });
+    if (!user) {
+      return next(new HttpError("User does not exist.", 422));
+    }
+    const comparePass = await bcrypt.compare(password, user.password);
+    if (!comparePass) {
+      return next(new HttpError("Incorrect password", 422));
+    }
+    const { _id: id, name } = user;
+    const token = jwt.sign({ id, name }, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    });
+
+    res.status(200).json({ Token: token, ID: id, Name: name });
+  } catch (error) {
+    return next(new HttpError("Login failed. Please check your password", 422));
+  }
 };
 
 //========>user profile
@@ -59,7 +83,15 @@ const loginUser = async (req, res, next) => {
 
 const getUser = async (req, res, next) => {
   try {
-  } catch (error) {}
+    const { id } = req.params;
+    const user = await userModel.findById(id).select("-password");
+    if (!user) {
+      return next(new HttpError("User does not exist.", 422));
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    return next(new HttpError(error, 422));
+  }
 };
 
 //========> Change user avatar(Profile picture)
@@ -67,7 +99,11 @@ const getUser = async (req, res, next) => {
 // protected route
 
 const changeAvatar = async (req, res, next) => {
-  res.json("Register USer");
+    try {
+        res.json(req.files);
+    } catch (error) {
+        return next(new HttpError(error, 422));
+    }
 };
 
 //========> Edit user details (from profile page)
@@ -83,7 +119,12 @@ const editUser = async (req, res, next) => {
 // Unprotected route
 
 const getAuthors = async (req, res, next) => {
-  res.json("Register USer");
+  try {
+    const authors = await userModel.find().select("-password");
+    res.json(authors);
+  } catch (error) {
+    return next(new HttpError(error, 422));
+  }
 };
 
 module.exports = {
