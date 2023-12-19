@@ -105,14 +105,66 @@ const getCategoryPost = async (req, res, next) => {
 };
 
 // ======> Get users/Authors post
-//GET : api/posts
+//GET : api/posts/user/:id
 // Unprotected
-const getUserPost = async (req, res, next) => {};
+const getUserPost = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const posts = await postModel.find({ creator: id }).sort({ createdAt: -1 });
+    res.status(200).json(posts);
+  } catch (error) {
+    return next(new HttpError(error));
+  }
+};
 
 // ======> Edit post
 //PATCH : api/posts/:id
 // Protected
-const editPost = async (req, res, next) => {};
+const editPost = async (req, res, next) => {
+  try {
+    let fileName;
+    let newFilename;
+    let updatedPost;
+    const postId = req.params.id;
+    let { title, category, description } = req.body;
+    // React Quill has a paragraph opening and clossing tag with a break tag in between so there are 11 characters in between.
+    if (!title || !category || !description.length < 12) {
+      return next(
+        new HttpError(
+          "All fields are required. Please filled all the feilds",
+          422
+        )
+      );
+    }
+    if (!req.files) {
+      (updatedPost = await postModel.findByIdAndUpdate(postId, {
+        title,
+        category,
+        description,
+      })),
+        { new: true };
+    }
+    else{
+        //get old post from data base
+        const oldPost = await postModel.findById(postId)
+
+        // delete the old post thumbnail
+        fs.unlink(path.join(__dirname, "..", "uploads", oldPost.thumbnail), (err) => {
+          if (err) {
+            return next(new HttpError(err, 400));
+          }
+          // upload a new thumbnails
+          const {thumbnail} = req.files;
+          // checkin the file   size
+          if (thumbnail.size > 2000000) {
+            return next(new HttpError("File size too large", 400));
+          }
+        })
+    }
+  } catch (error) {
+    return next(new HttpError(error));
+  }
+};
 
 // ======> Delete a post
 //DELETE : api/posts/:id
