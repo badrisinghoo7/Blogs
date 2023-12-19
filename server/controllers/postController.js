@@ -68,7 +68,18 @@ const createPost = async (req, res, next) => {
 // ======> Get single Post
 //GET : api/posts/:id
 // UNprotected
-const getPost = async (req, res, next) => {};
+const getPost = async (req, res, next) => {
+  try {
+    const postId = req.params.id;
+    const post = await postModel.findById(postId);
+    if (!post) {
+      return next(new HttpError("Post does not exist", 402));
+    }
+    res.status(200).json(post);
+  } catch (error) {
+    return next(new HttpError(error));
+  }
+};
 
 // ======> Get All Post
 //GET : api/posts/
@@ -83,7 +94,15 @@ const getPosts = async (req, res, next) => {
 // ======>Get posts by category
 //GET : api/posts/category/:category
 // Unprotected
-const getCategoryPost = async (req, res, next) => {};
+const getCategoryPost = async (req, res, next) => {
+  try {
+    const { category } = req.params;
+    const posts = await postModel.find({ category }).sort({ createdAt: -1 });
+    res.status(200).json(posts);
+  } catch (error) {
+    return next(new HttpError(error));
+  }
+};
 
 // ======> Get users/Authors post
 //GET : api/posts
