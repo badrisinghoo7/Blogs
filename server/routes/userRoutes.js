@@ -7,13 +7,14 @@ const {
   editUser,
   getAuthors,
 } = require("../controllers/userControllers");
+const authMiddleware = require("../middkewares/authMiddleware");
 
 const router = Router();
 
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.get("/:id", getUser);
-router.post("/change-avatar", changeAvatar);
+router.post("/change-avatar", authMiddleware, changeAvatar);
 router.post("/edit-user", editUser);
 router.get("/authors", getAuthors);
 

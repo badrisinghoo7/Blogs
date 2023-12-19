@@ -152,7 +152,12 @@ const changeAvatar = async (req, res, next) => {
 // protected route
 
 const editUser = async (req, res, next) => {
-  res.json("Register USer");
+  try {
+    
+  } catch (error) {
+    return next(new HttpError(error, 422));
+    
+  }
 };
 
 //========> get user
