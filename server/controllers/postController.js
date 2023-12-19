@@ -194,6 +194,7 @@ const editPost = async (req, res, next) => {
     if (!updatedPost) {
       return next(new HttpError("Could not update the post .", 422));
     }
+    res.status(200).json(updatedPost);
   } catch (error) {
     return next(new HttpError(error));
   }
