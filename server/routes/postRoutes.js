@@ -16,6 +16,6 @@ router.get("/", getPosts);
 router.get("/category/:category", getCategoryPost);
 router.get("/user/:id", getUserPost);
 router.patch("/:id", editPost);
-router.delete("/user/:id", deletePost);
+router.delete("/:id", deletePost);
 
 module.exports = router;
