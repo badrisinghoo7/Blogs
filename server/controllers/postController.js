@@ -1,7 +1,7 @@
 //Post Controller here
 
-const {postModel} = require("../models/postModel");
-const {userModel} = require("../models/userModel");
+const { postModel } = require("../models/postModel");
+const { userModel } = require("../models/userModel");
 const fs = require("fs");
 const path = require("path");
 const { v4: uuid } = require("uuid");
@@ -46,7 +46,7 @@ const createPost = async (req, res, next) => {
             description,
             thumbnail: newFileName,
             creator: req.user.id,
-          })
+          });
           if (!newPost) {
             return next(new HttpError("Post could not be created", 422));
           }
@@ -68,17 +68,19 @@ const createPost = async (req, res, next) => {
 // ======> Get single Post
 //GET : api/posts/:id
 // UNprotected
-const getPost = async (req, res, next) => {
-    try {
-        
-    } catch (error) {
-        return next(new HttpError(error));
-    }
-};
+const getPost = async (req, res, next) => {};
+
+
 // ======> Get All Post
 //GET : api/posts/
 // UNprotected
-const getPosts = async (req, res, next) => {};
+const getPosts = async (req, res, next) => {
+  try {
+    const posts = await postModel.find().sort({ updateAt: -1 });
+  } catch (error) {
+    return next(new HttpError(error));
+  }
+};
 // ======>Get posts by category
 //GET : api/posts/category/:category
 // Unprotected
