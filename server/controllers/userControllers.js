@@ -6,6 +6,8 @@ const HttpError = require("../models/errorModel");
 const { userModel } = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const fs = require("fs");
+const path = require("path");
 require("dotenv").config();
 
 const registerUser = async (req, res, next) => {
@@ -99,15 +101,16 @@ const getUser = async (req, res, next) => {
 // protected route
 
 const changeAvatar = async (req, res, next) => {
-    try {
-        if (!req.files.avatar) {
-            return next(new HttpError("Please upload an image", 422));
-        }
-        
-        // res.json(req.files);
-    } catch (error) {
-        return next(new HttpError(error, 422));
+  try {
+    if (!req.files.avatar) {
+      return next(new HttpError("Please upload an image", 422));
     }
+    const user = await userModel.findById(req.user.id);
+
+    // res.json(req.files);
+  } catch (error) {
+    return next(new HttpError(error, 422));
+  }
 };
 
 //========> Edit user details (from profile page)
