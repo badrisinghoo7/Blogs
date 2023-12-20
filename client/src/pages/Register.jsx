@@ -6,7 +6,7 @@ const Register = () => {
       <div className="container">
         <h2>Sign Up</h2>
         <form className='form register_form'>
-          <p className="form_error-message">This is an error message</p>
+          <p className="form_error-message">This is an error message.</p>
           <input type="text" />
         </form>
       </div>
