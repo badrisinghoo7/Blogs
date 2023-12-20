@@ -14,7 +14,7 @@ const Header = () => {
           </Link>
           <ul className="nav_menu">
             <li>
-              <Link to="/profile">Ernest Achiever</Link>
+              <Link to="/profile/stdh">Ernest Achiever</Link>
             </li>
             <li>
               <Link to="/create">Create Post</Link>
