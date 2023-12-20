@@ -146,7 +146,19 @@ nav{
   backdrop-filter: blur(20px);
 
 }
+
+.nav_container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
 .nav_logo{
   width: 3rem;
   display: block;
+}
+
+
+.nav_toggle-btn{
+  display: none;
 }
