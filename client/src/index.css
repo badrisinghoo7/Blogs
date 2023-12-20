@@ -314,3 +314,15 @@ footer{
 
 
 /*  ================ Register Page Css==============*/
+
+.form{
+  display: flex;
+  flex-direction: column;
+  gap:0.8rem;
+}
+input, select, textarea{
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-1);
+  resize: none;
+}
