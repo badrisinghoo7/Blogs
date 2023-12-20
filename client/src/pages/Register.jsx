@@ -48,7 +48,7 @@ const Register = () => {
           />
           <button className="btn primary" type="submit">
             {" "}
-            Submit
+            Register
           </button>
         </form>
         <small>
