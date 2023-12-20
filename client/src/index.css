@@ -347,3 +347,16 @@ input, select, textarea{
   place-items: center;
 }
 
+.register h2, .login h2, .create-post h2{
+  margin-bottom: 2rem;
+
+}
+
+.register small, .login small {
+  display: block;
+  margin-top: 1.5rem;
+}
+
+.register small a, .login small a {
+  color: var(--color-primary);
+}
