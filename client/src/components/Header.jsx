@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/Blue Gradient Modern Professional Company Zoom Virtual Background.png";
+import { FaBars } from "react-icons/fa";
+import { AiOutlineClose } from "react-icons/ai";
 
 const Header = () => {
   return (
@@ -24,7 +26,9 @@ const Header = () => {
               <Link to="/logout">Logout</Link>
             </li>
           </ul>
-          <button className="nav_toggle-btn"></button>
+          <button className="nav_toggle-btn">
+            <AiOutlineClose/>
+          </button>
         </div>
       </nav>
     </div>
