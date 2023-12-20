@@ -113,9 +113,24 @@ section{
   font-weight: 400;
 }
 
+.btn.sm{
+  font-size: 0.8rem;
+  padding: 0.3rem 0.7rem;
+  font-weight: 400;
+}
+.btn.danger{
+  background:var(--color-red);
+  color: var(--color-white);
+}
+
+.btn:hover{
+  background-color: var(--color-gray-900);
+  color: var(--color-white);
+}
 
 
 
+/*        NAVBAR */
 
 .nav_logo{
   width: 3rem;
