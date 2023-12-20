@@ -10,7 +10,7 @@ const Register = () => {
   });
 
   const changeInputHandler = (e) => {
-    setuserData({ ...userData, [e.target.name]: e.target.value });
+    setuserData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   return (
     <section className="register">
