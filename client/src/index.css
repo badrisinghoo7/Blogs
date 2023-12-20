@@ -85,6 +85,22 @@ section{
   margin-top: 6rem;
 }
 
+.container{
+  width: var(--container-width-lg);
+  margin-inline: auto;
+}
+
+.btn{
+  display: inline-block;
+  width: fit-content;
+  padding: 0.5rem 1rem ;
+  border-radius: var(--radius-2);
+  background-color: var(--color-white);
+  font-weight: 500;
+  cursor:pointer;
+  transition: var(--transition);
+
+}
 
 
 
