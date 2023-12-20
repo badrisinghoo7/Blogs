@@ -1,44 +1,47 @@
-import React, { useState } from 'react';
-
-
-
-
+import React, { useState } from "react";
+import PostItem from "./PostItem";
+import pic1 from "../images/blog97.jpg";
+import pic2 from "../images/blog91.jpg";
+import pic3 from "../images/blog1.jpg";
 
 const Dummy_data = [
   {
-    "category": "Agriculture",
-    "id": 1,
-    "thumbnail": "https://example.com/farm1.jpg",
-    "title": "Composting for Beginners: Turning Waste into Riches",
-    "description": "Learn how to create nutrient-rich compost for your garden.",
-    "authorID": 1
+    category: "Agriculture",
+    id: 1,
+    thumbnail:  pic1 ,
+    title: "Composting for Beginners: Turning Waste into Riches",
+    description: "Learn how to create nutrient-rich compost for your garden.",
+    authorID: 1,
   },
   {
-    "category": "Agriculture",
-    "id": 2,
-    "thumbnail": "https://example.com/tractor2.jpg",
-    "title": "Essential Farm Equipment for Small Holdings",
-    "description": "Discover tools and machinery to make your farming tasks easier.",
-    "authorID": 1
+    category: "Agriculture",
+    id: 2,
+    thumbnail:  pic2 ,
+    title: "Essential Farm Equipment for Small Holdings",
+    description:
+      "Discover tools and machinery to make your farming tasks easier.",
+    authorID: 1,
   },
   {
-    "category": "Agriculture",
-    "id": 3,
-    "thumbnail": "https://example.com/bee3.jpg",
-    "title": "The Buzz on Beekeeping: A Beginner's Guide",
-    "description": "Explore the fascinating world of honeybees and learn how to start your own hive.",
-    "authorID": 1
+    category: "Agriculture",
+    id: 3,
+    thumbnail:  pic3 ,
+    title: "The Buzz on Beekeeping: A Beginner's Guide",
+    description:
+      "Explore the fascinating world of honeybees and learn how to start your own hive.",
+    authorID: 1,
   },
-]
+];
 
 const Posts = () => {
-    
-    const [posts,setPosts] = useState([]);
+  const [posts, setPosts] = useState(Dummy_data);
   return (
-    <div>
-      
-    </div>
+    <section className="posts">
+      {posts.map((item) => {
+        return <PostItem key={item.id} {...item} />;
+      })}
+    </section>
   );
-}
+};
 
 export default Posts;
