@@ -166,3 +166,60 @@ nav{
 .nav_toggle-btn{
   display: none;
 }
+
+
+
+/* ======== Footer=========*/
+
+footer{
+  background:var(--color-gray-900);
+  margin-top: 6rem;
+  padding-top: 6rem;
+}
+
+.footer_categories{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+.footer_categories a{
+  background: var(--color-gray-700);
+  color: var(--color-white);
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-2);
+  transition: var(--transition);
+}
+
+.footer_categories a:hover{
+  background: var(--color-white);
+  color: var(--color-gray-900);
+}
+
+.footer_copyright{
+  text-align: center;
+  border-top: 2px solid (var(--color-white));
+  padding:1rem;
+  color: var(--color-red);
+  font-weight: 300;
+  font-size: 1.2rem;
+
+}
+
+
+
+/*  Error Page Css*/
+
+.center{
+  text-align: center;
+  padding-top: 5rem;
+  margin-inline: center;
+  display: block;
+  width: 100%;
+}
+
+.error-page h2{
+  font-size: 2rem;
+  padding-top: 30px;
+}
