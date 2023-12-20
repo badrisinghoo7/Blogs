@@ -34,7 +34,7 @@ const Login = () => {
 
           <button className="btn primary" type="submit">
             {" "}
-            Submit
+            Log In
           </button>
         </form>
         <small>
