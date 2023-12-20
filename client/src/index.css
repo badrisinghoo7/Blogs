@@ -278,5 +278,38 @@ footer{
 .post_author-avatar{
   width: 2.5rem;
   aspect-ratio: 1/1;
-  
+
 }
+
+
+/*  ================ Single Post Page ==============*/
+
+.post-details{
+  width: var(--form-width);
+  background: var(--color-white);
+  margin-inline: auto;
+  padding: 2rem 0;;
+}
+.post-details_header{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.post-details_buttons{
+  display: flex;
+  gap:1rem;
+  align-items: center;
+}
+
+.post-details_thumbnail{
+  margin: 1rem 0;
+  height: fit-content;
+  max-height:30rem ;
+  overflow: hidden;
+}
+.post-details p{
+  margin-bottom: 0.7rem ;
+}
+
+
