@@ -14,7 +14,7 @@ const Posts = () => {
           })}
         </div>
       ) : (
-        <h2>No posts Found</h2>
+        <h2 className="center">No posts Found</h2>
       )}
     </section>
   );
