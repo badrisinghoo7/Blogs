@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Dummy_data } from "../data";
+import PostItem from "../components/PostItem";
 
 const AuthorPost = () => {
   const [posts, setPosts] = useState(Dummy_data);
   return (
-    <section className="author">
+    <section className="author-posts">
       {posts.length > 0 ? (
-        <div className="container authore_container">
+        <div className="container author-posts_container">
           {posts.map((item) => {
             return <PostItem key={item.id} {...item} />;
           })}
