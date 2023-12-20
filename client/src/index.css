@@ -158,7 +158,11 @@ nav{
   display: block;
 }
 
-
+.nav_menu{
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
 .nav_toggle-btn{
   display: none;
 }
