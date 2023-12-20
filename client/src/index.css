@@ -327,7 +327,7 @@ input, select, textarea{
   resize: none;
 }
 
-.from_error-message{
+.form_error-message{
   background: var(--color-red);
   color: var(--color-white);
   font-size: 0.8rem;

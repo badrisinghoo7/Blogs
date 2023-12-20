@@ -16,13 +16,7 @@ const Login = () => {
         <h2>Sign Up</h2>
         <form className="form login_form">
           <p className="form_error-message">This is an error message.</p>
-          <input
-            type="text"
-            placeholder="Full Name"
-            name="name"
-            value={userData.name}
-            onChange={changeInputHandler}
-          />
+
           <input
             type="text"
             placeholder="Email"
@@ -37,20 +31,14 @@ const Login = () => {
             value={userData.password}
             onChange={changeInputHandler}
           />
-          <input
-            type="text"
-            placeholder="Confirm Password"
-            name="password2"
-            value={userData.password2}
-            onChange={changeInputHandler}
-          />
+
           <button className="btn primary" type="submit">
             {" "}
             Submit
           </button>
         </form>
         <small>
-          Already have an account ? <Link to="/login">Login</Link>
+          Don't have an account ? <Link to="/register">Signup</Link>
         </small>
       </div>
     </section>
