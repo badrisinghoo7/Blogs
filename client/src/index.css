@@ -541,6 +541,17 @@ input, select, textarea{
     box-shadow: -2rem 4rem 4rem rgba(0,0,0,0.26);
     /* height: 5.5rem; */
   }
+  .nav_menu li a {
+    display: block;
+    background: var(--color-white);
+    padding: 0.85rem 2.5rem;
+  }
   
+  .nav_toggle-btn{
+    display: inline-block;
+    background: transparent;
+    font-size: 1.5rem ;
+    cursor: pointer;
+  }
   
 }
