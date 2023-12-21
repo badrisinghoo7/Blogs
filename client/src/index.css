@@ -394,3 +394,38 @@ input, select, textarea{
 .author_info{
   margin-top:1rem ;
 }
+
+
+/*===============ProfileUser============*/
+
+.profile_container{
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+.profile_details{
+  width: 100%;
+}
+.avatar_wrapper{
+  width: 15rem;
+  aspect-ratio: 1/1;
+  position: relative;
+  margin-inline: auto;
+  margin-top: 1rem;
+}
+.profile_avatar{
+  height: 100%;
+  border-radius: 50%;
+  border: 1rem solid var(--color-white);
+  overflow: hidden;
+}
+.avatar_form{
+  height: 1rem;
+}
+.avatar_form input{
+  visibility: hidden;
+}
+.avatr_from label, .profile_avatar-btn{
+  background: var(--color-gray-900);
+  font-size: 1.2rem;
+}
