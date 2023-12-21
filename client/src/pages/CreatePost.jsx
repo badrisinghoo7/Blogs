@@ -4,7 +4,7 @@ const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("Uncategorized");
   const [description, setDescription] = useState("");
-  const [thi, bnaild, setThumbnail] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
   return (
     <section className="create-post">
       <div className="container">
