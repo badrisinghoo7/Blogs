@@ -25,9 +25,13 @@ const UserProfile = () => {
                 accept="png,jpg,jpeg"
                 onChange={(e) => setAvatar(e.target.files[0])}
               />
-              <label htmlFor="avatar">{FaEdit}</label>
+              <label htmlFor="avatar">
+                <FaEdit />
+              </label>
             </form>
-            <button className="profile_avatar-btn">{FaCheck}</button>
+            <button className="profile_avatar-btn">
+              <FaCheck />
+            </button>
           </div>
           <h1>Ernest Achiever</h1>
         </div>
