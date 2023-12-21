@@ -427,7 +427,7 @@ input, select, textarea{
 }
 .avatr_from label, .profile_avatar-btn{
   background: var(--color-gray-900);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: var(--color-white);
   position: absolute;
   right: 2rem;
@@ -441,7 +441,7 @@ input, select, textarea{
 .profile_avatar-btn{
   cursor:pointer;
   padding: 0;
-  font-size: 1.5rem;
+  /* font-size: 1.5rem; */
   background: var(--color-primary);
 }
 
