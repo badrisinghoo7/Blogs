@@ -361,6 +361,13 @@ input, select, textarea{
   color: var(--color-primary);
 }
 
+/*      ===============  Custum style for react quill editor==========*/
+
+.ql-editor{
+  overflow: scroll;
+  background: var(--color-white);
+  height: 10rem !important;
+}
 
 /*      ===============  Authors Page==========*/
 .authors_container{

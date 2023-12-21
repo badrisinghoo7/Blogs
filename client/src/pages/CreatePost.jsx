@@ -10,7 +10,7 @@ const CreatePost = () => {
 
   const modules = {
     toolbar: [
-      [{ header: [1, 2,3, 4, 5, 6 , false] }],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
       ["bold", "italic", "underline", "strike", "blockquote"],
       [
         { list: "ordered" },
@@ -65,20 +65,26 @@ const CreatePost = () => {
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
-            {
-              POST_CATEGORIES.map((category) => (
-                <option key={category} value={category}>{category}</option>
-              ))
-            }
-            </select>
-          <ReactQuill modules={modules} formats={formates} value={description} onChange={setDescription} />
+            {POST_CATEGORIES.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+          <ReactQuill
+            modules={modules}
+            formats={formates}
+            value={description}
+            onChange={setDescription}
+          />
           <input
             type="file"
             onChange={(e) => setThumbnail(e.target.files[0])}
             accept="png,jpg,jpeg"
           />
-          <button type="submit" className="btn primary">Create</button>
-          
+          <button type="submit" className="btn primary">
+            Create
+          </button>
         </form>
       </div>
     </section>
