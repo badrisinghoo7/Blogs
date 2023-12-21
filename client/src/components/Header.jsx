@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/avatar13.jpg";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 
 const Header = () => {
+  const [isNavShowing, setIsNavShowing] = useState(
+    window.innerWidth > 800 ? true : false
+  );
   return (
     <div>
       <nav>
@@ -27,7 +30,7 @@ const Header = () => {
             </li>
           </ul>
           <button className="nav_toggle-btn">
-            <AiOutlineClose/>
+            <AiOutlineClose />
           </button>
         </div>
       </nav>
