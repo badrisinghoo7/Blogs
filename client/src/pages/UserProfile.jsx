@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import avt1 from "../Image/avt1.jpg";
+import avt1 from "../images/avatar1.jpg";
 import { FaEdit, FaCheck } from "react-icons/fa";
 
 const UserProfile = () => {
