@@ -441,7 +441,7 @@ input, select, textarea{
 .profile_avatar-btn{
   cursor:pointer;
   padding: 0;
-  /* font-size: 2rem; */
+  font-size: 1.5rem;
   background: var(--color-primary);
 }
 
