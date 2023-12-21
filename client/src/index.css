@@ -454,3 +454,43 @@ input, select, textarea{
   margin-inline: auto;
   width: var(--form-width);
 }
+
+
+
+
+
+
+
+/*==========DASHBOARD===============*/
+
+
+.dashboard_container{
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.dashboard_post{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap:1rem;
+  background: var(--color-white) ;
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--radius-2);
+}
+.dashboard_post-info{
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  align-items: center;
+}
+.dashboard_post-thumbnail{
+  width: 4rem;
+  border-radius: var(--radius-1);
+  overflow: hidden;
+}
+.dashboard_post-actions{
+  display: flex;
+  gap: 1rem;
+}

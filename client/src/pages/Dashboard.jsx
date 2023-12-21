@@ -13,7 +13,7 @@ const Dashboard = () => {
               <article className="dashboard_post">
                 <div className="dashboard_post-info">
                   <div className="dashboard_post-thumbnail">
-                    <img src={item.avatar} alt="Name" />
+                    <img src={item.thumbnail} alt="Name" />
                   </div>
                   <h5>{item.title}</h5>
                 </div>
