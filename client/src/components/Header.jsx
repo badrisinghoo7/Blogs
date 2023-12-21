@@ -8,6 +8,14 @@ const Header = () => {
   const [isNavShowing, setIsNavShowing] = useState(
     window.innerWidth > 800 ? true : false
   );
+
+  const closeNavHeader = () => {
+    if (window.innerWidth < 800) {
+      setIsNavShowing(false);
+    } else {
+      setIsNavShowing(true);
+    }
+  };
   return (
     <div>
       <nav>
@@ -30,7 +38,7 @@ const Header = () => {
             </li>
           </ul>
           <button className="nav_toggle-btn">
-            <AiOutlineClose />
+            {isNavShowing ? <AiOutlineClose /> : <FaBars />}
           </button>
         </div>
       </nav>
