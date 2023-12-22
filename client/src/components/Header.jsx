@@ -25,19 +25,27 @@ const Header = () => {
           </Link>
           <ul className="nav_menu">
             <li>
-              <Link to="/profile/stdh">Ernest Achiever</Link>
+              <Link to="/profile/stdh" onClick={closeNavHeader}>
+                Ernest Achiever
+              </Link>
             </li>
             <li>
-              <Link to="/create">Create Post</Link>
+              <Link to="/create" onClick={closeNavHeader}>
+                Create Post
+              </Link>
             </li>
             <li>
-              <Link to="/authors">Authors</Link>
+              <Link to="/authors" onClick={closeNavHeader}>
+                Authors
+              </Link>
             </li>
             <li>
-              <Link to="/logout">Logout</Link>
+              <Link to="/logout" onClick={closeNavHeader}>
+                Logout
+              </Link>
             </li>
           </ul>
-          <button className="nav_toggle-btn">
+          <button className="nav_toggle-btn" onClick={!isNavShowing}>
             {isNavShowing ? <AiOutlineClose /> : <FaBars />}
           </button>
         </div>
