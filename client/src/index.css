@@ -509,13 +509,13 @@ input, select, textarea{
 
 @media screen and (max-width:  800px) {
   h1{
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
   h2{
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
   h3{
-    font-size: 1.2rem;
+    font-size: 1.35rem;
   }
   .container{
     width: var(--container-width-md);
@@ -605,5 +605,14 @@ input, select, textarea{
     grid-template-columns: 1fr;
     gap: 1.2rem;
   }
+  .dashboard_post{
+    flex-direction: column;
 
+  }
+  .dashboard_post-info{
+    gap: 1.5rem;
+  }
+  .dashboard_post-thumbnail{
+    width: 5rem;
+  }
 }
