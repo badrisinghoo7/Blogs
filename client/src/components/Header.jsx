@@ -20,7 +20,7 @@ const Header = () => {
     <div>
       <nav>
         <div className="container nav_container">
-          <Link to="/" className="nav_logo">
+          <Link to="/" className="nav_logo" onClick={closeNavHeader}>
             <img src={logo} alt="nav_logo" />
           </Link>
           <ul className="nav_menu">

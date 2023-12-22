@@ -540,7 +540,30 @@ input, select, textarea{
     width: 100%;
     box-shadow: -2rem 4rem 4rem rgba(0,0,0,0.26);
     /* height: 5.5rem; */
+    animation: dropDown 400ms ease forwards;
+    opacity: 0;
+    transform: rotateX(90deg);
+    transform-origin:top ;
   }
+
+  @keyframes dropDown{
+    to{
+      opacity: 1;
+      transform: rotateX(0);
+    }
+  }
+  .nav_menu li:nth-child(2){
+    animation-delay: 300ms;
+  }
+  .nav_menu li:nth-child(3){
+    animation-delay: 600ms;
+  }
+  
+  .nav_menu li:nth-child(4){
+    animation-delay: 900ms;
+  }
+
+
   .nav_menu li a {
     display: block;
     background: var(--color-white);
@@ -554,4 +577,33 @@ input, select, textarea{
     cursor: pointer;
   }
   
+  .posts_container{
+    grid-template-columns: 1fr;
+    gap:1rem;
+  }
+  .footer_categories{
+    flex-direction: column;
+  }
+
+  .post-details{
+    width: 100%;
+    background: transparent;
+    padding: 0;
+  }
+  .post-details h1{
+    margin: 1rem;
+  }
+
+  .register,.login,.create-post{
+    width: 100%;
+  }
+  .form-profile_form{
+    width: 100%;
+    margin-top: 2.5rem;
+  }
+  .authors_container{
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
 }
