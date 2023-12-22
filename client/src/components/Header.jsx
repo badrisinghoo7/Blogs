@@ -23,28 +23,30 @@ const Header = () => {
           <Link to="/" className="nav_logo" onClick={closeNavHeader}>
             <img src={logo} alt="nav_logo" />
           </Link>
-          <ul className="nav_menu">
-            <li>
-              <Link to="/profile/stdh" onClick={closeNavHeader}>
-                Ernest Achiever
-              </Link>
-            </li>
-            <li>
-              <Link to="/create" onClick={closeNavHeader}>
-                Create Post
-              </Link>
-            </li>
-            <li>
-              <Link to="/authors" onClick={closeNavHeader}>
-                Authors
-              </Link>
-            </li>
-            <li>
-              <Link to="/logout" onClick={closeNavHeader}>
-                Logout
-              </Link>
-            </li>
-          </ul>
+          {isNavShowing && (
+            <ul className="nav_menu">
+              <li>
+                <Link to="/profile/stdh" onClick={closeNavHeader}>
+                  Ernest Achiever
+                </Link>
+              </li>
+              <li>
+                <Link to="/create" onClick={closeNavHeader}>
+                  Create Post
+                </Link>
+              </li>
+              <li>
+                <Link to="/authors" onClick={closeNavHeader}>
+                  Authors
+                </Link>
+              </li>
+              <li>
+                <Link to="/logout" onClick={closeNavHeader}>
+                  Logout
+                </Link>
+              </li>
+            </ul>
+          )}
           <button
             className="nav_toggle-btn"
             onClick={() => setIsNavShowing(!isNavShowing)}
