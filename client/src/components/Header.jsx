@@ -45,7 +45,10 @@ const Header = () => {
               </Link>
             </li>
           </ul>
-          <button className="nav_toggle-btn" onClick={!isNavShowing}>
+          <button
+            className="nav_toggle-btn"
+            onClick={() => setIsNavShowing(!isNavShowing)}
+          >
             {isNavShowing ? <AiOutlineClose /> : <FaBars />}
           </button>
         </div>
