@@ -8,6 +8,17 @@ export const login = (payload) => {
   });
 };
 
+export const register = (payload) => {
+  return fetch(`https://blogappserver-lyvw.onrender.com/api/users/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+}
+
+// For local storage data saving and getting
 export const saveLocalData = (data) => {
   localStorage.setItem("token", data.Token);
   localStorage.setItem("Name", data.Name);
@@ -18,6 +29,8 @@ export const saveLocalData = (data) => {
 export const getLocalData = (name) => {
   return localStorage.getItem(name);
 };
+
+// For local storage data erasing
 export const eraseLocalData = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("Name");

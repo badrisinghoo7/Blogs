@@ -40,9 +40,11 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/create" onClick={closeNavHeader}>
-                  Create Post
-                </Link>
+                {getLocalData("token") && (
+                  <Link to="/create" onClick={closeNavHeader}>
+                    Create Post
+                  </Link>
+                )}
               </li>
               <li>
                 <Link to="/authors" onClick={closeNavHeader}>

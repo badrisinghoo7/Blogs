@@ -4,6 +4,7 @@ import { eraseLocalData, login, saveLocalData } from "../utils/api";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [error, setError] = useState(null);
   const [userData, setuserData] = useState({
     email: "",
     password: "",
@@ -23,7 +24,9 @@ const Login = () => {
       .then((data) => {
         // SaveLocalData(data);
         saveLocalData(data);
+        setError(data.message);
         console.log(data);
+        console.log("hi this is error message", data.message);
         if (data.Token) {
           navigate("/");
         } else {
@@ -44,9 +47,9 @@ const Login = () => {
   return (
     <section className="login">
       <div className="container">
-        <h2>Sign Up</h2>
+        <h2>Log in</h2>
         <form className="form login_form">
-          <p className="form_error-message">This is an error message.</p>
+          {error && <p className="form_error-message">{error}</p>}
 
           <input
             type="text"
