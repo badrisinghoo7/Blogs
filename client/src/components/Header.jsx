@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../images/avatar13.jpg";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
+import { eraseLocalData, getLocalData } from "../utils/api";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [isNavShowing, setIsNavShowing] = useState(
     window.innerWidth > 800 ? true : false
   );
@@ -16,6 +18,13 @@ const Header = () => {
       setIsNavShowing(true);
     }
   };
+
+  const handleLogout = () => {
+    closeNavHeader();
+    eraseLocalData();
+    console.log("logged out");
+  };
+  const name = getLocalData("Name");
   return (
     <div>
       <nav>
@@ -27,7 +36,7 @@ const Header = () => {
             <ul className="nav_menu">
               <li>
                 <Link to="/profile/stdh" onClick={closeNavHeader}>
-                  Ernest Achiever
+                  {name}
                 </Link>
               </li>
               <li>
@@ -41,9 +50,15 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/logout" onClick={closeNavHeader}>
-                  Logout
-                </Link>
+                {getLocalData("token") ? (
+                  <Link to="/login" onClick={handleLogout}>
+                    Logout
+                  </Link>
+                ) : (
+                  <Link to="/login" onClick={closeNavHeader}>
+                    Login
+                  </Link>
+                )}
               </li>
             </ul>
           )}
